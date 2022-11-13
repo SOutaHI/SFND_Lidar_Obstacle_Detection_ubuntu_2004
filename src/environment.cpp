@@ -86,6 +86,10 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer, ProcessPointCloud
 
   renderPointCloud(viewer,segmentCloud.second, "planefield", Color(0,1,1));
   renderPointCloud(viewer,segmentCloud.first, "obsfield", Color(1,1,0));
+
+  // render raw pointcloud
+  renderPointCloud(viewer, inputCloud, "raw");
+  
   int clusterId = 0;
   std::vector<Color> colors = {Color(1,0,0), Color(0,1,0), Color(0,0,1)};
 
@@ -146,7 +150,7 @@ int main (int argc, char** argv)
 
     // Load pcd and run obstacle detection process
     inputCloudI = pointProcessorI->loadPcd((*streamIterator).string());
-    sleep(1);
+    // sleep(1);
     cityBlock(viewer, pointProcessorI, inputCloudI);
 
     streamIterator++;
